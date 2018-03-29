@@ -1,11 +1,11 @@
-14618a20884a15a6252139b576d676fe *DESCRIPTION
+eeb0ddf3ed0682c2a3cb12d9c3cbcb48 *DESCRIPTION
 e0d07f918d15658970c9352551cfc83c *NAMESPACE
 70ae57fb79180b76dfc16842f18264e1 *R/Estimation.R
 757f4d76b27931a1378d35e222c20e26 *R/Other.R
 a6096f200927f5b2cb7bc86dd574b653 *R/RcppExports.R
 bb6d5f3f91aff7f927221edfe3b0d66b *R/Simulations.R
 3641b3cc017a43cede3aa2e9e7ba1fad *inst/CITATION
-cb78dd0f8e0cdca9d83ca453bd653a37 *man/extractAIC.spARCH.Rd
+6904edf4fb40b65b66b4d726a46eaedb *man/extractAIC.spARCH.Rd
 5de1cc0aa02bba70b4046bbd00517a49 *man/fitted.spARCH.Rd
 5eb5f2631a2066db37902a41d3e97526 *man/logLik.spARCH.Rd
 bbd6336adb24a7e2f4d0a2fe98a71811 *man/plot.spARCH.Rd
@@ -14,7 +14,7 @@ bbd6336adb24a7e2f4d0a2fe98a71811 *man/plot.spARCH.Rd
 22e00dc09c882bf0b868e0db715187a9 *man/residuals.spARCH.Rd
 f460025bfa83696cd4c6863539c8f3b2 *man/sim.spARCH.Rd
 358935deb04bd6ee8af1e1469166ae5e *man/spGARCH.Rd
-db484a16922abf16eeab94f95e233369 *man/summary.spARCH.Rd
-07118af819bfdefb9b5114e82de2a2b6 *src/Estimation.cpp
+3c88c3f93ebb04b8fbe9f5032e335100 *man/summary.spARCH.Rd
+fc0fea4eed89c22b655637733906d1ba *src/Estimation.cpp
 57527968536117586c295ef3492dcc56 *src/RcppExports.cpp
 ff3ee4d63c3b9c62754a2ec242d55ced *src/Simulations.cpp

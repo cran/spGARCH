@@ -8,7 +8,6 @@ Computes the Akaike information criterion
 The function extracts the log-likelihood of a spatial ARCH model.
 }
 \usage{
-## S3 method for class 'spARCH'
 \method{extractAIC}{spARCH}(fit, scale, k = 2, ...)
 }
 %- maybe also 'usage' for other objects documented here.

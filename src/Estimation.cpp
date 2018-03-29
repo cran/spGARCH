@@ -59,7 +59,7 @@ double LL_spARCH(Eigen::VectorXd pars, List param) {
   }
 
   double log_abs_det_partial = ( (pow(y.array(), 2) / (pow(h.array(), 3)).sqrt()).log() + ((eigen_v.array()).abs()).log()).sum();
-  double sum_f_residuals = log(1) - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
+  double sum_f_residuals     = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial);
 }
@@ -106,7 +106,7 @@ double LL_EspARCH(Eigen::VectorXd pars, List param) {
   ArrayXd       eigen_v = (eigen_values.array()).abs();
 
   double log_abs_det_partial = (log(b / (2 * sqrt(pow(h.array(), 3)))) + log(eigen_v)).sum();
-  double sum_f_residuals = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals     = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial);
 }
@@ -165,7 +165,7 @@ double LL_spARCHX(Eigen::VectorXd pars, List param) {
   }
 
   double log_abs_det_partial = (log(pow(xi.array(), 2) / sqrt(pow(h.array(), 3))) + log(eigen_v)).sum();
-  double sum_f_residuals = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals     = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial);
 }
@@ -224,7 +224,7 @@ double LL_EspARCHX(Eigen::VectorXd pars, List param) {
   ArrayXd  eigen_v      = (eigen_values.array()).abs();
 
   double log_abs_det_partial = (log(b / (2 * sqrt(pow(h.array(), 3)))) + log(eigen_v)).sum();
-  double sum_f_residuals = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals     = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial);
 }
@@ -292,7 +292,7 @@ double LL_SARspARCH(Eigen::VectorXd pars, List param) {
 
   double log_abs_det_partial    = (log(pow(xi.array(), 2) / sqrt(pow(h.array(), 3))) + log(eigen_v)).sum();
   double log_abs_det_partial_ar = (((1 - lambda * B_eigen.array()).abs()).log()).sum();
-  double sum_f_residuals        = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals        = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial + log_abs_det_partial_ar);
 }
@@ -346,7 +346,7 @@ double LL_SAREspARCH(Eigen::VectorXd pars, List param) {
 
   double log_abs_det_partial    = (log(b / (2 * sqrt(pow(h.array(), 3)))) + log(eigen_v)).sum();
   double log_abs_det_partial_ar = (((1 - lambda * B_eigen.array()).abs()).log()).sum();
-  double sum_f_residuals        = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals        = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial + log_abs_det_partial_ar);
 }
@@ -416,7 +416,7 @@ double LL_SARspARCHX(Eigen::VectorXd pars, List param) {
 
   double log_abs_det_partial    = (log(pow(xi.array(), 2) / sqrt(pow(h.array(), 3))) + log(eigen_v)).sum();
   double log_abs_det_partial_ar = (((1 - lambda * B_eigen.array()).abs()).log()).sum();
-  double sum_f_residuals        = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals        = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial + log_abs_det_partial_ar);
 }
@@ -479,7 +479,7 @@ double LL_SAREspARCHX(Eigen::VectorXd pars, List param) {
 
   double log_abs_det_partial    = (log(b / (2 * sqrt(pow(h.array(), 3)))) + log(eigen_v)).sum();
   double log_abs_det_partial_ar = (((1 - lambda * B_eigen.array()).abs()).log()).sum();
-  double sum_f_residuals        = (log(1) - 0.5 * log(2 * pi) - 0.5 * pow(eps.array(), 2)).sum();
+  double sum_f_residuals        = - 0.5 * log(2 * pi) - 0.5 * (pow(eps.array(), 2)).sum();
 
   return  (-1) * (sum_f_residuals + log_abs_det_partial + log_abs_det_partial_ar);
 }

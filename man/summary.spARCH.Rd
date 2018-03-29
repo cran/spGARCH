@@ -9,12 +9,9 @@ Summary for spARCH object
 The function returns a summary of the model fit of a spatial ARCH model (\code{qml.spARCH} or \code{qml.SARspARCH}).
 }
 \usage{
-## S3 method for class 'spARCH'
 \method{summary}{spARCH}(object, ...)
-## S3 method for class 'summary.spARCH'
 \method{print}{summary.spARCH}(x, digits = max(5, .Options$digits - 3),
 	signif.stars = TRUE, ...)
-## S3 method for class 'spARCH'
 \method{print}{spARCH}(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.

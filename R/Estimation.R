@@ -296,6 +296,7 @@ qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, 
     residuals <- as.vector(xi/sqrt(h))
     names(residuals) <- names(y)
     out <- list(coefficients = snp$pars, residuals = xi, fitted.values = y - xi,
+                terms = model_terms, df.residual = length(xi) - length(snp$pars),
                 stderr = stderr, hessian = snp$hessian,
                 LL = -snp$values[length(snp$values)],
                 y = y,  h = h, type = type, W = W, B = B, call = cl, regressors = TRUE, X = X, AR = TRUE)

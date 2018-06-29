@@ -148,7 +148,7 @@ qml.spARCH <- function(formula, W, type = "gaussian", data = NULL, b = 2, start 
 
 # SARspARCH process
 
-qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, start = NULL, control = list()){
+qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, start = NULL, eigen_v = NULL, control = list()){
 
   cl <- match.call()
   con <- list(trace = FALSE, rho = 1, outer.iter = 400, inner.iter = 800, delta = 1.0e-7, tol = 1.0e-8)
@@ -179,8 +179,13 @@ qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, 
     W <- .asdgCMatrix(as.matrix(W))
   }
 
-  eigen <- eigen(B, only.values = TRUE)
-  B_eigen <- eigen$values
+  if(is.null(eigen_v)){
+    eigen <- eigen(B, only.values = TRUE)
+    B_eigen <- eigen$values
+  } else {
+    eigen <- list(values = eigen_v, vector = NULL)
+    B_eigen <- eigen_v
+  }
   if(min(eigen$values) == 0){
     min_lambda <- -Inf
   } else {

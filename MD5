@@ -1,6 +1,6 @@
-b55218d9643f073fb0dc4862bf09e2dd *DESCRIPTION
+f47538f48404f6774d8b6e4605f9701e *DESCRIPTION
 e0d07f918d15658970c9352551cfc83c *NAMESPACE
-d640b79b3bd42669e64211fd84d0b18a *R/Estimation.R
+3498eaea92ba00192e4fcf00c1068f4d *R/Estimation.R
 757f4d76b27931a1378d35e222c20e26 *R/Other.R
 a6096f200927f5b2cb7bc86dd574b653 *R/RcppExports.R
 bb6d5f3f91aff7f927221edfe3b0d66b *R/Simulations.R
@@ -9,7 +9,7 @@ bb6d5f3f91aff7f927221edfe3b0d66b *R/Simulations.R
 5de1cc0aa02bba70b4046bbd00517a49 *man/fitted.spARCH.Rd
 5eb5f2631a2066db37902a41d3e97526 *man/logLik.spARCH.Rd
 bbd6336adb24a7e2f4d0a2fe98a71811 *man/plot.spARCH.Rd
-62ffcc53fa2001554e7fb0a8bd78d67c *man/qml.SARspARCH.Rd
+eee5ff56149cf9f801aa81128dd96900 *man/qml.SARspARCH.Rd
 25c004d5858cd6c24d59eafc11263f19 *man/qml.spARCH.Rd
 22e00dc09c882bf0b868e0db715187a9 *man/residuals.spARCH.Rd
 f460025bfa83696cd4c6863539c8f3b2 *man/sim.spARCH.Rd

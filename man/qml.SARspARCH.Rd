@@ -9,7 +9,7 @@ The function fits a spatial autoregressive model with spatial ARCH residuals usi
 }
 \usage{
 qml.SARspARCH(formula, B, W, type = "gaussian", data = NULL,
-              b = 2, start = NULL, control = list())
+              b = 2, start = NULL, eigen_v = NULL, control = list())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,6 +33,9 @@ parameter \code{b} for the E-spARCH model (\code{type = "exp"}), must be a (posi
 }
   \item{start}{
 vector of starting values for the numerical optimization of the log-likelihood (optional)
+}
+  \item{eigen_v}{
+eigen values of B (optional)
 }
   \item{control}{
 list of control variables for iterative maximization of the log-likelihood

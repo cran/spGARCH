@@ -1,20 +1,19 @@
 citHeader("To cite spGARCH in publications use:")
 
 citEntry(entry = "Article",
-  title        = "Generalized spatial and spatiotemporal autoregressive conditional heteroscedasticity",
+  title        = "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
   author       = personList(as.person("Philipp Otto"),
                    as.person("Wolfgang Schmid"),
                    as.person("Robert Garthoff")),
-  journal      = "arXiv",
-  year         = "2016",
-  volume       = "xx",
-  number       = "xx",
-  pages        = "1--xxx",
-  url          = "https://arxiv.org/abs/1609.00711",
+  journal      = "Spatial Statistics",
+  year         = "2018",
+  volume       = "26",
+  pages        = "125--145",
+  url          = "https://doi.org/10.1016/j.spasta.2018.07.005",
 
   textVersion  =
-  paste("Otto, P., Schmid, W. & Garthoff, R. (2016).",
-        "Generalized spatial and spatiotemporal autoregressive conditional heteroscedasticity",
-        "arXiv:1609.00711",
-        "URL: https://arxiv.org/abs/1609.00711.")
+  paste("Otto, P., Schmid, W. & Garthoff, R. (2018).",
+        "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
+        "Spatial Statistics",
+        "URL: https://doi.org/10.1016/j.spasta.2018.07.005.")
 )

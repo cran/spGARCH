@@ -8,7 +8,7 @@
 # spatial ARCH process
 
 
-qml.spARCH <- function(formula, W, type = "gaussian", data = NULL, b = 2, start = NULL, control = list()){
+qml.spARCH <- function(formula, W, type = "spARCH", data = NULL, b = 2, start = NULL, control = list()){
   cl <- match.call()
   con <- list(trace = FALSE, rho = 1, outer.iter = 400, inner.iter = 800, delta = 1.0e-7, tol = 1.0e-8)
   nmsC <- names(con)
@@ -39,7 +39,7 @@ qml.spARCH <- function(formula, W, type = "gaussian", data = NULL, b = 2, start 
     names(y) <- as.character(1:length(y))
   }
 
-  if (type == "gaussian"){
+  if (type == "spARCH"){
 
     if(dim(X)[2] == 0){
 
@@ -75,7 +75,7 @@ qml.spARCH <- function(formula, W, type = "gaussian", data = NULL, b = 2, start 
 
   }
 
-  if (type == "exp"){
+  if (type == "log-spARCH"){
 
     if(dim(X)[2] == 0){
 
@@ -148,7 +148,7 @@ qml.spARCH <- function(formula, W, type = "gaussian", data = NULL, b = 2, start 
 
 # SARspARCH process
 
-qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, start = NULL, eigen_v = NULL, control = list()){
+qml.SARspARCH <- function(formula, B, W, type = "spARCH", data = NULL, b = 2, start = NULL, eigen_v = NULL, control = list()){
 
   cl <- match.call()
   con <- list(trace = FALSE, rho = 1, outer.iter = 400, inner.iter = 800, delta = 1.0e-7, tol = 1.0e-8)
@@ -201,7 +201,7 @@ qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, 
     names(y) <- as.character(1:length(y))
   }
 
-  if (type == "gaussian"){
+  if (type == "spARCH"){
 
     if(dim(X)[2] == 0){
 
@@ -239,7 +239,7 @@ qml.SARspARCH <- function(formula, B, W, type = "gaussian", data = NULL, b = 2, 
 
   }
 
-  if (type == "exp"){
+  if (type == "log-spARCH"){
 
     if(dim(X)[2] == 0){
 
@@ -327,7 +327,7 @@ summary.spARCH <- function(object, ...){
   coef[,2] <- object$stderr
   coef[,3] <- coef[,1] / coef[,2]
   coef[,4] <- 2 * (1 - pnorm(abs(coef[,3])))
-  colnames(coef) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
+  colnames(coef) <- c("Estimate", "Std. Error", "t value", "Asymptotic Pr(>|t|)")
   if(object$AR){
     par_names <- c("alpha (spARCH)", "rho (spARCH)", "lambda (SAR)")
   } else {

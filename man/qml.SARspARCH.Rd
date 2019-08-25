@@ -8,13 +8,13 @@ Maximum-likelihood estimation of a spatial autoregressive model with spatial ARC
 The function fits a spatial autoregressive model with spatial ARCH residuals using the maximum-likelihood approach. All parameters are jointly estimated. In addition, external regressor may be included in the mean equation.
 }
 \usage{
-qml.SARspARCH(formula, B, W, type = "gaussian", data = NULL,
+qml.SARspARCH(formula, B, W, type = "spARCH", data = NULL,
               b = 2, start = NULL, eigen_v = NULL, control = list())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{formula}{
-an object of class "formula"): a symbolic description of the model to be fitted. The details of model specification are given under ‘Details’.  \code{y} must be a numeric vector of length \code{n} (dimension of the weighting matrix)
+an object of class "\code{\link[stats]{formula}}"): a symbolic description of the model to be fitted. The details of model specification are given under "Details."  \code{y} must be a numeric vector of length \code{n} (dimension of the weighting matrix)
 }
   \item{B}{
 \code{n} times \code{n} spatial weight matrix for the spatial autoregressive part
@@ -42,7 +42,7 @@ list of control variables for iterative maximization of the log-likelihood
 }
 }
 \details{
-For \code{type = "gaussian"}, the functions fits a simple spatial autoregressive model with spatial ARCH residuals, i.e.,
+For \code{type = "spARCH"}, the functions fits a simple spatial autoregressive model with spatial ARCH residuals, i.e.,
 \deqn{\boldsymbol{Y} = \lambda \mathbf{B} \boldsymbol{Y} + \mathbf{X} \boldsymbol{\beta} + \boldsymbol{h}^{1/2} \boldsymbol{\varepsilon}
 }{
 Y = \lambda B Y + X \beta + h^(1/2) \epsilon
@@ -53,7 +53,7 @@ with
 }{
 h = \alpha + \rho * W * Y^2.
 }
-The distribution of the error term is assumed to be Gaussian.
+The distribution of the error term is assumed to be spARCH.
 
 If \code{type = "exp"}, a spatial E-ARCH process is estimated for the error term, i.e.,
 \deqn{
@@ -67,16 +67,16 @@ g_b(\boldsymbol{\varepsilon}) = (\ln|\varepsilon(\boldsymbol{s}_1)|^{b}, \ldots,
 }{
 g_b(\epsilon) = (ln|h(\epsilon_1)|^b, ..., ln|h(\epsilon_n)|^b)'
 }
-and the error term is also assumed to be Gaussian.
+and the error term is also assumed to be spARCH.
 
-The modelling equation gan be specified as for \code{\link{lm}}. A typical model has the form \code{response ~ terms} where response is the (numeric) response vector and terms is a series of terms which specifies a linear predictor for \code{response}. A terms specification of the form \code{first + second} indicates all the terms in first together with all the terms in second with duplicates removed. A specification of the form \code{first:second} indicates the set of terms obtained by taking the interactions of all terms in first with all terms in second. The specification \code{first*second} indicates the cross of first and second. This is the same as \code{first + second + first:second}. However, there is no \code{offset} permitted for the \code{qml.SARspARCH}.
+The modelling equation gan be specified as for \code{\link[stats]{lm}}, i.e., as \code{\link[stats]{formula}} object. A typical model has the form \code{response ~ terms} where response is the (numeric) response vector and terms is a series of terms which specifies a linear predictor for \code{response}. A terms specification of the form \code{first + second} indicates all the terms in first together with all the terms in second with duplicates removed. A specification of the form \code{first:second} indicates the set of terms obtained by taking the interactions of all terms in first with all terms in second. The specification \code{first*second} indicates the cross of first and second. This is the same as \code{first + second + first:second}. However, there is no \code{offset} permitted for the \code{qml.SARspARCH}.
 
-For an intercept-only model, the \code{formula} can be specified as \code{response ~ 1}. In addition, it is possible to fit an intercept-free model with \code{response ~ 0} or \code{response ~ 0 + terms}.
+For an intercept-only model, the \code{\link[stats]{formula}} can be specified as \code{response ~ 1}. In addition, it is possible to fit an intercept-free model with \code{response ~ 0} or \code{response ~ 0 + terms}.
 
-To summarize the results of the model fit, use the generic function \code{summary}. For analysis of the residuals, the generic \code{plot} function provides several descriptive plots. For numerical maximization of the log-likelihood, the function uses the algorithm of \code{solnp} from the package \code{\link{Rsolnp}}.
+To summarize the results of the model fit, use the generic function \code{summary}. For analysis of the residuals, the generic \code{\link{plot}} function provides several descriptive plots. For numerical maximization of the log-likelihood, the function uses the algorithm of \code{\link[Rsolnp]{solnp}} from the package \code{\link[Rsolnp]{Rsolnp}}.
 }
 \value{
-A \code{spARCH} object with the following elements is returned:
+A \linkS4class{spARCH} object with the following elements is returned:
 \item{coefficients}{Parameter estimates \eqn{\alpha}{\alpha} and \eqn{\rho}{\rho}.}
 \item{residuals}{Vector of residuals.}
 \item{fitted.values}{Fitted values.}
@@ -110,7 +110,7 @@ see also: \code{\link{solnp}}
 }
 }
 \seealso{
-\code{solnp} (package \code{Rsolnp})
+\code{\link[Rsolnp]{solnp}} (package \code{\link[Rsolnp]{Rsolnp}})
 }
 \examples{
 require("spdep")
@@ -127,9 +127,9 @@ X <- cbind(rep(1, n), rnorm(n))
 beta <- c(5, 2)
 
 y <- solve(diag(n) - lambda * B) \%*\%
-    (sim.spARCH(n = n, rho = rho, alpha = alpha, W = W, type = "exp") + X \%*\% beta)
+    (sim.spARCH(n = n, rho = rho, alpha = alpha, W = W, type = "log-spARCH") + X \%*\% beta)
 y <- as.vector(y)
-out <- qml.SARspARCH(y ~ X[,2], B = B, W = W, type = "exp")
+out <- qml.SARspARCH(y ~ X[,2], B = B, W = W, type = "log-spARCH")
 
 summary(out)
 }

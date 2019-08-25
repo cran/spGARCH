@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 export("sim.spARCH")
+export("sim.spGARCH")
 export("qml.spARCH")
 export("qml.SARspARCH")
 export(".onLoad")
@@ -13,8 +14,9 @@ importFrom("stats", "dnorm", "pnorm", "printCoefmat", "residuals",
              "rnorm", "runif", "sd", "qqnorm", "model.frame", "model.response", "model.matrix")
 importFrom("grDevices", "dev.flush", "dev.hold", "dev.interactive",
              "devAskNewPage")
-importFrom("Matrix", "crossprod", "norm", "isSymmetric")
+importFrom("Matrix", "crossprod", "norm", "isSymmetric", "Matrix")
 importFrom("graphics", "par")
+importFrom("nleqslv", "nleqslv")
 S3method("summary", "spARCH")
 S3method("residuals", "spARCH")
 S3method("fitted", "spARCH")

@@ -5,7 +5,7 @@
 The function generates \code{n} random numbers of a spatial ARCH process for given parameters and weighting schemes.
 }
 \usage{
-sim.spARCH(n = dim(W)[1], rho, alpha, W, b = 2, type = "gaussian", control = list())
+sim.spARCH(n = dim(W)[1], rho, alpha, W, b = 2, type = "spARCH", control = list())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -13,7 +13,7 @@ sim.spARCH(n = dim(W)[1], rho, alpha, W, b = 2, type = "gaussian", control = lis
   \item{rho}{spatial dependence parameter rho}
   \item{alpha}{unconditional variance level alpha}
   \item{W}{\code{n} times \code{n} spatial weight matrix}
-  \item{b}{parameter \code{b} for spatial exponential ARCH (only needed if \code{type = "exp"}). Default 2.}
+  \item{b}{parameter \code{b} for logarithmic spatial ARCH (only needed if \code{type = "log-spARCH"}). Default 2.}
   \item{type}{type of simulated spARCH process (see details)}
   \item{control}{list of control arguments (see below)}
 }
@@ -27,26 +27,26 @@ Y = diag(h)^(1/2) \epsilon ,
 }
 where \eqn{\boldsymbol{\varepsilon}}{\epsilon} is a spatial White Noise process. The definition of \eqn{\boldsymbol{h}}{h} depends on the chosen \code{type}. The following types are available.
 \itemize{
-\item \code{type = "gaussian"} - simulates \eqn{\boldsymbol{\varepsilon}}{\epsilon} from a truncated normal distribution on the interval \eqn{[-a, a]}{[-a, a]}, such that \eqn{\boldsymbol{h} > 0}{h > 0} with
+\item \code{type = "spARCH"} - simulates \eqn{\boldsymbol{\varepsilon}}{\epsilon} from a truncated normal distribution on the interval \eqn{[-a, a]}{[-a, a]}, such that \eqn{\boldsymbol{h} > 0}{h > 0} with
 \deqn{
 \boldsymbol{h} =  \alpha + \rho \mathbf{W} \boldsymbol{Y}^{(2)} \; \mbox{and} \; a = 1 / ||\rho^2\mathbf{W}^2||_1^{1/4}.
 }{
 h = \alpha + \rho W Y^(2)  and  a = 1 / (\rho^2||W^2||_1)^(1/4)
 }
 Note that the normal distribution is not trunctated (\eqn{a = \infty}{a =  \infty}), if \eqn{\mathbf{W}}{W} is a strictly triangular matrix, as it is ensured that \eqn{\boldsymbol{h} > \boldsymbol{0}}{h > 0}. Generally, it is sufficient that if there exists a permutation such that \eqn{\mathbf{W}}{W} is strictly triangular. In this case, the process is called oriented spARCH process.
-\item \code{type = "exp"} - simulates an exponential spARCH process (E-spARCH), i.e.,
+\item \code{type = "log-spARCH"} - simulates a logarithmic spARCH process (log-spARCH), i.e.,
 \deqn{
 \ln\boldsymbol{h} = \alpha + \rho \mathbf{W} g(\boldsymbol{\varepsilon}) \, .
 }{
 ln h = \alpha + \rho W g_b(\epsilon) .
 }
-For the E-spARCH process, the errors follow a standard normal distribution. The function \eqn{g_b}{g_b} is given by
+For the log-spARCH process, the errors follow a standard normal distribution. The function \eqn{g_b}{g_b} is given by
 \deqn{
 g_b(\boldsymbol{\varepsilon}) = (\ln|\varepsilon(\boldsymbol{s}_1)|^{b}, \ldots, \ln|\varepsilon(\boldsymbol{s}_n)|^{b})' \, .
 }{
 g_b(\epsilon) = (ln|h(\epsilon_1)|^b, ..., ln|h(\epsilon_n)|^b)' .
 }
-\item \code{type = "complex"} - allows for complex solutions of \eqn{\boldsymbol{h}^{1/2}}{h^(1/2)} with
+\item \code{type = "complex-spARCH"} - allows for complex solutions of \eqn{\boldsymbol{h}^{1/2}}{h^(1/2)} with
 \deqn{
 \boldsymbol{h} =  \alpha + \rho \mathbf{W} \boldsymbol{Y}^{(2)}  \, .
 }{
@@ -59,7 +59,7 @@ The errors follow a standard normal distribution.
 The functions returns a vector \eqn{\boldsymbol{y}}{y}.
 }
 \references{
-Philipp Otto, Wolfgang Schmid, Robert Garthoff (2017). Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. \emph{arXiv:1609.00711}
+Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. \href{https://doi.org/10.1016/j.spasta.2018.07.005}{Spatial Statistics} 26, pp. 125-145. \emph{arXiv:1609.00711}
 }
 \author{
 Philipp Otto \email{potto@europa-uni.de}
@@ -90,7 +90,7 @@ W <- nb2mat(nblist)
 
 # simulation
 
-Y <- sim.spARCH(rho = rho, alpha = alpha, W = W, type = "exp")
+Y <- sim.spARCH(rho = rho, alpha = alpha, W = W, type = "log-spARCH")
 
 # visualization
 
@@ -112,7 +112,7 @@ rho_2 <- 0.7
 W <- rho_1 * W_1 + rho_2 * W_2
 rho <- 1
 
-Y <- sim.spARCH(n = d^2, rho = rho, alpha = alpha, W = W, type = "exp")
+Y <- sim.spARCH(n = d^2, rho = rho, alpha = alpha, W = W, type = "log-spARCH")
 image(1:d, 1:d, array(Y, dim = c(d,d)), xlab = expression(s[1]), ylab = expression(s[2]))
 }
 \keyword{spatial ARCH}

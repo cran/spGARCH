@@ -10,10 +10,19 @@ citEntry(entry = "Article",
   volume       = "26",
   pages        = "125--145",
   url          = "https://doi.org/10.1016/j.spasta.2018.07.005",
-
   textVersion  =
   paste("Otto, P., Schmid, W. & Garthoff, R. (2018).",
         "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
-        "Spatial Statistics",
-        "URL: https://doi.org/10.1016/j.spasta.2018.07.005.")
-)
+        "Spatial Statistics 26, pp. 125-145",
+        "URL: https://doi.org/10.1016/j.spasta.2018.07.005."))
+
+citEntry(entry = "Article",
+  title        = "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models",
+  author       = personList(as.person("Philipp Otto")),
+  journal      = "To appear: The R Journal",
+  year         = "2019",
+  textVersion  =
+  paste("Otto, P. (2019).",
+        "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models",
+        "To appear: The R Journal",
+        "URL: https://arxiv.org/abs/1812.01871"))

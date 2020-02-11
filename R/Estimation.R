@@ -16,12 +16,16 @@ qml.spARCH <- function(formula, W, type = "spARCH", data = NULL, b = 2, start = 
   if (length(noNms <- namc[!namc %in% nmsC]))
     warning("unknown names in control: ", paste(noNms, collapse = ", "))
 
+  if(!is.element(type, c("spARCH", "log-spARCH"))){
+    stop("invalid type: ", type)
+  }
+
   model_frame <- model.frame(formula, data)
   model_terms <- attr(model_frame, "terms")
   y <- model.response(model_frame)
   X <- model.matrix(model_terms, model_frame)
 
-  if (length(dim(y)) > 0 | class(y) != "numeric" | mode(y) != "numeric"){
+  if (length(dim(y)) > 0 | !inherits(y, "numeric") | mode(y) != "numeric"){
     stop("y must be a numeric vector \n")
   }
 
@@ -29,9 +33,9 @@ qml.spARCH <- function(formula, W, type = "spARCH", data = NULL, b = 2, start = 
     stop("Spatial weight matrix must be quadratic \n")
   }
   if (length(y) != dim(W)[1]){
-    stop("Spatial weight matrix must have dimension n x n [ n = length(y) ]\n")
+    stop(paste("Spatial weight matrix must have dimension", length(y), "x", length(y), "(length of y) \n"))
   }
-  if (class(W) != "dgCMatrix"){
+  if (!inherits(W, "dgCMatrix")){
     W <- .asdgCMatrix(as.matrix(W))
   }
 
@@ -146,6 +150,153 @@ qml.spARCH <- function(formula, W, type = "spARCH", data = NULL, b = 2, start = 
   return(structure(out, class = c("spARCH")))
 }
 
+
+# qml.spGARCH <- function(formula, W1, W2, type = "spGARCH", data = NULL, b = 2, start = NULL, control = list()){
+#
+#   # to-do
+#   # add possibility for fixed parameters (eGARCH, logGARCH)
+#   # parameter space
+#   # X-models
+#   # spGARCH object, summary
+#   # documentation
+#   # cpp functions
+#
+#
+#   cl <- match.call()
+#   con <- list(trace = FALSE, rho = 1, outer.iter = 400, inner.iter = 800, delta = 1.0e-7, tol = 1.0e-8)
+#   nmsC <- names(con)
+#   con[(namc <- names(control))] <- control
+#   if (length(noNms <- namc[!namc %in% nmsC]))
+#     warning("unknown names in control: ", paste(noNms, collapse = ", "))
+#
+#   if(!is.element(type, c("spGARCH", "log-spGARCH", "e-spGARCH"))){
+#     stop("invalid type: ", type)
+#   }
+#
+#   model_frame <- model.frame(formula, data)
+#   model_terms <- attr(model_frame, "terms")
+#   y <- model.response(model_frame)
+#   X <- model.matrix(model_terms, model_frame)
+#
+#   if (length(dim(y)) > 0 | !is(y, "numeric") | mode(y) != "numeric"){
+#     stop("y must be a numeric vector \n")
+#   }
+#
+#   if (dim(W1)[1] != dim(W1)[2] | dim(W2)[1] != dim(W2)[2]){
+#     stop("Spatial weight matrices must be quadratic \n")
+#   }
+#
+#   if (length(y) != dim(W1)[1] | length(y) != dim(W2)[1]){
+#     stop(paste("Spatial weight matrices must have dimension", length(y), "x", length(y), "(length of y) \n"))
+#   }
+#   if (!is(W1, "dgCMatrix")){
+#     W1 <- .asdgCMatrix(as.matrix(W))
+#   }
+#   if (!is(W2, "dgCMatrix")){
+#     W2 <- .asdgCMatrix(as.matrix(W))
+#   }
+#
+#   if(is.null(names(y))){
+#     names(y) <- as.character(1:length(y))
+#   }
+#
+#
+#   functions <- .choose_functions(type)
+#
+#   f_inv     <- functions$f_inv
+#   tau_y     <- functions$tau_y
+#   g         <- functions$g
+#   d_h_d_eps <- functions$d_h_d_eps
+#
+#
+#
+#   if(dim(X)[2] == 0){
+#
+#     param <- list(y = y, W_1 = W_1, W_2 = W_2,
+#                   f_inv = f_inv, tau_y = tau_y, g = g, d_h_d_eps = d_h_d_eps,
+#                   model = type) # parameters and regressors
+#
+#     if (type == "spGARCH"){
+#       LB <- c(1e-6, 0  , 0  )
+#       UB <- c(Inf , Inf, Inf)
+#       default <- c(1, 0.5, 0.3)
+#       start <- .teststart(start, LB, UB, default)
+#     }
+#     if (type == "e-spGARCH"){
+#       LB <- c(1e-6, 0  , 0  , 0  , -Inf )
+#       UB <- c(Inf , Inf, Inf, Inf,  Inf )
+#       default <- c(1, 0.5, 0.3, 1, 0)
+#       start <- .teststart(start, LB, UB, default)
+#     }
+#     if (type == "log-spGARCH"){
+#       LB <- c(1e-6, 0  , 0  , 0  )
+#       UB <- c(Inf , Inf, Inf, Inf)
+#       default <- c(1, 0.5, 0.3, 1)
+#       start <- .teststart(start, LB, UB, default)
+#     }
+#
+#     snp <- solnp(pars = start, fun = .LL_unified, param = param, # .LL_spARCH_oriented_r
+#                  LB = LB,
+#                  UB = UB,
+#                  control =  con)
+#   } else if (dim(X)[2] > 0) {
+#
+#     # param <- list(y, W, X, isSymmetric(W)) # parameters and regressors
+#     #
+#     # LB <- c(1e-6, 0, rep(-Inf, dim(X)[2]))
+#     # UB <- c(Inf, Inf, rep(Inf, dim(X)[2]))
+#     # default <- c(0.4, 1, rep(0, dim(X)[2]))
+#     # start <- .teststart(start, LB, UB, default)
+#     #
+#     # snp <- solnp(pars = start, fun = .LL_spARCHX, param = param,
+#     #              LB = LB,
+#     #              UB = UB,
+#     #              control =  con)
+#
+#   } else {
+#     stop("X must be a matrix")
+#   }
+#
+#
+#   if (snp$convergence != 0){
+#     stop("Iterative maximization did not converge. \n")
+#   }
+#
+#   stderr <- tryCatch(sqrt(diag(solve(snp$hessian))),
+#                      error = function(e) {warning("Hessian matrix is computationally singular (no standard errors)\n"); return(rep(NA, length(snp$pars)))})
+#
+#   if(dim(X)[2] == 0){
+#
+#     h <- as.vector(snp$pars[1] + snp$pars[2] * W %*% (y^2))
+#     residuals <- as.vector(y/sqrt(h))
+#     names(residuals) <- names(y)
+#     out <- list(coefficients = snp$pars, residuals = residuals, fitted.values = y - residuals,
+#                 terms = model_terms, df.residual = length(residuals) - length(snp$pars),
+#                 stderr = stderr, hessian = snp$hessian,
+#                 LL = -snp$values[length(snp$values)],
+#                 y = y,  h = h, type = type, W = W, call = cl, regressors = FALSE, AR = FALSE)
+#   } else {
+#
+#     xi <- y - X %*% snp$pars[3:length(snp$pars)]
+#     h <- as.vector(snp$pars[1] + snp$pars[2] * W %*% (xi^2))
+#     residuals <- as.vector(xi/sqrt(h))
+#     names(residuals) <- names(y)
+#     out <- list(coefficients = snp$pars, residuals = xi, fitted.values = y - xi,
+#                 terms = model_terms, df.residual = length(xi) - length(snp$pars),
+#                 stderr = stderr, hessian = snp$hessian,
+#                 LL = -snp$values[length(snp$values)],
+#                 y = y,  h = h, type = type, W = W, call = cl, regressors = TRUE, X = X, AR = FALSE)
+#
+#   }
+#
+#
+#   return(structure(out, class = c("spGARCH")))
+# }
+
+
+
+
+
 # SARspARCH process
 
 qml.SARspARCH <- function(formula, B, W, type = "spARCH", data = NULL, b = 2, start = NULL, eigen_v = NULL, control = list()){
@@ -157,12 +308,16 @@ qml.SARspARCH <- function(formula, B, W, type = "spARCH", data = NULL, b = 2, st
   if (length(noNms <- namc[!namc %in% nmsC]))
     warning("unknown names in control: ", paste(noNms, collapse = ", "))
 
+  if(!is.element(type, c("spARCH", "log-spARCH"))){
+    stop("invalid type: ", type)
+  }
+
   model_frame <- model.frame(formula, data)
   model_terms <- attr(model_frame, "terms")
   y <- model.response(model_frame)
   X <- model.matrix(model_terms, model_frame)
 
-  if (length(dim(y)) > 0 | class(y) != "numeric" | mode(y) != "numeric"){
+  if (length(dim(y)) > 0 | !inherits(y, "numeric") | mode(y) != "numeric"){
     stop("'y' must be a numeric vector \n")
   }
 
@@ -170,12 +325,12 @@ qml.SARspARCH <- function(formula, B, W, type = "spARCH", data = NULL, b = 2, st
     stop("Spatial weighting matrices must be quadratic \n")
   }
   if (length(y) != dim(B)[1] | length(y) != dim(W)[1]){
-    stop("Spatial weighting matrices must have dimension n x n [ n = length(y) ]\n")
+    stop(paste("Spatial weight matrix must have dimension", length(y), "x", length(y), "(length of y) \n"))
   }
-  if (class(B) != "dgCMatrix"){
+  if (!inherits(B, "dgCMatrix")){
     B <- .asdgCMatrix(as.matrix(B))
   }
-  if (class(W) != "dgCMatrix"){
+  if (!inherits(W, "dgCMatrix")){
     W <- .asdgCMatrix(as.matrix(W))
   }
 
@@ -327,7 +482,7 @@ summary.spARCH <- function(object, ...){
   coef[,2] <- object$stderr
   coef[,3] <- coef[,1] / coef[,2]
   coef[,4] <- 2 * (1 - pnorm(abs(coef[,3])))
-  colnames(coef) <- c("Estimate", "Std. Error", "t value", "Asymptotic Pr(>|t|)")
+  colnames(coef) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
   if(object$AR){
     par_names <- c("alpha (spARCH)", "rho (spARCH)", "lambda (SAR)")
   } else {
@@ -380,7 +535,7 @@ print.summary.spARCH <- function(x, digits = max(5, .Options$digits - 3), signif
   # Coefficients
   cat("\n Coefficients: \n")
   printCoefmat(x$coef, signif.stars = signif.stars, digits = digits, na.print = "NA")
-
+  cat("\n Note: all p-values (incl. significance stars) are asymptotic \n")
   # Further stuff
   cat("\n AIC: ", format(signif(x$AIC, digits)), ", BIC: ", format(signif(x$BIC, digits)), " (Log-Likelihood: ", format(signif(x$LL, digits)), ") \n", sep = "")
   cat("\n Moran's I (residuals): ",  format(signif(x$moran_res$estimate[1], digits)), ", p-value: ", format(signif(x$moran_res$p.value, digits)), "\n", sep = "")
@@ -464,7 +619,7 @@ plot.spARCH <- function (x, which = c(1:3),
     moran.plot(eps^2, mat2listw(W), zero.policy = zero, xlab = xlab[2], ylab = ylab[2], ...)
 
     cat("Reproduce the results as follows: \n")
-    cat("\t eps <- residuals(x) \n\t W <- as.matrix(x$W) \n\t moran.plot(eps, mat2listw(W), zero.policy = TRUE, xlab = \"Residuals\", ylab = \"Spatially Lagged Residuals\") \n")
+    cat("\t eps <- residuals(x) \n\t W <- as.matrix(x$W) \n\t moran.plot(eps^2, mat2listw(W), zero.policy = TRUE, xlab = \"Residuals\", ylab = \"Spatially Lagged Residuals\") \n")
 
     dev.flush()
   }
@@ -542,6 +697,61 @@ plot.spARCH <- function (x, which = c(1:3),
 # Log-Likelihood Functions
 #
 ##################################################
+
+.LL_unified <- function(pars, param){
+
+  model  <- param$model
+
+  if(is.element(model, c("spGARCH", "h-spGARCH"))){
+    alpha  <- pars[1]
+    rho    <- pars[2]
+    lambda <- pars[3]
+    theta  <- 1
+    zeta   <- 1
+    b      <- 1
+  } else if(is.element(model, c("log-spGARCH"))) {
+    alpha  <- pars[1]
+    rho    <- pars[2]
+    lambda <- pars[3]
+    theta  <- NULL
+    zeta   <- NULL
+    b      <- pars[4]
+  } else if(is.element(model, c("e-spGARCH"))) {
+    alpha  <- pars[1]
+    rho    <- pars[2]
+    lambda <- pars[3]
+    theta  <- pars[4]
+    zeta   <- pars[5]
+    b      <- NULL
+  }
+
+
+  y         <- param$y
+  f_inv     <- param$f_inv
+  tau_y     <- param$tau_y
+  W_1       <- param$W_1
+  W_2       <- param$W_2
+  g         <- param$g
+  d_h_d_eps <- param$d_h_d_eps
+
+  n            <- length(y)
+  rhoW_1       <- rho * W_1
+  lambdaW_2    <- lambda * W_2
+  alpha        <- alpha * rep(1, n)
+
+  result_g     <- g(y, alpha, rhoW_1, lambdaW_2, theta, zeta, b, tau_y, f_inv)
+  eps          <- as.vector(result_g[[1]])
+  h            <- as.vector(result_g[[2]])
+
+  J <- 0.5 * eps / sqrt(h) * d_h_d_eps(eps, h, alpha, theta, zeta, b, rhoW_1, lambdaW_2) + diag(sqrt(h))
+
+  return((-1) * (sum(log(dnorm(eps))) - log(det(J))))
+
+}
+
+
+
+
 #
 # .LL_spARCHX_r <- function(pars, param){
 #   # spARCH coefficients

@@ -20,6 +20,10 @@ sim.spARCH <- function(n = dim(W)[1], rho, alpha, W, b = 2, type = "spARCH", con
     warning("unknown names in control: ", paste(noNms, collapse = ", "))
   }
 
+  if(!is.element(type, c("spARCH", "log-spARCH", "complex-spARCH"))){
+    stop("invalid type: ", type)
+  }
+
   R.seed <- get(".Random.seed", envir = .GlobalEnv)
   on.exit(assign(".Random.seed", R.seed, envir = .GlobalEnv))
 
@@ -38,7 +42,7 @@ sim.spARCH <- function(n = dim(W)[1], rho, alpha, W, b = 2, type = "spARCH", con
   if (n != dim(W)[1]){
     stop("Spatial weight matrix W must have dimension n x n \n")
   }
-  if (class(W) != "dgCMatrix"){
+  if (!inherits(W, "dgCMatrix")){
     W <- .asdgCMatrix(rho * as.matrix(W))
   } else {
     W <- rho * W
@@ -126,7 +130,7 @@ sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta 
   if (dim(W2)[1] != dim(W1)[1] | dim(W2)[2] != dim(W1)[2]){
     stop("Spatial weight matrices W1 and W2 must have equal dimensions \n")
   }
-  if (class(W1) != "dgCMatrix"){
+  if (!inherits(W1, "dgCMatrix")){
     W1 <- .asdgCMatrix(rho * as.matrix(W1))
   } else {
     W1 <- rho * W1
@@ -137,7 +141,7 @@ sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta 
   if (n != dim(W2)[1]){
     stop("Spatial weight matrix W2 must have dimension n x n \n")
   }
-  if (class(W2) != "dgCMatrix"){
+  if (!inherits(W2, "dgCMatrix")){
     W2 <- .asdgCMatrix(lambda * as.matrix(W2))
   } else {
     W2 <- lambda * W2

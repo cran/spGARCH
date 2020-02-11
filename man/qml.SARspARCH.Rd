@@ -53,9 +53,9 @@ with
 }{
 h = \alpha + \rho * W * Y^2.
 }
-The distribution of the error term is assumed to be spARCH.
+The distribution of the error term is assumed to be Gaussian.
 
-If \code{type = "exp"}, a spatial E-ARCH process is estimated for the error term, i.e.,
+If \code{type = "log-ARCH"}, a spatial log-ARCH process is estimated for the error term, i.e.,
 \deqn{
 \ln(\boldsymbol{h}) = \alpha \boldsymbol{1}_n + \rho \mathbf{W} g_b(\boldsymbol{\varepsilon}) \, .
 }{
@@ -67,7 +67,7 @@ g_b(\boldsymbol{\varepsilon}) = (\ln|\varepsilon(\boldsymbol{s}_1)|^{b}, \ldots,
 }{
 g_b(\epsilon) = (ln|h(\epsilon_1)|^b, ..., ln|h(\epsilon_n)|^b)'
 }
-and the error term is also assumed to be spARCH.
+and the error term is also assumed to be Gaussian.
 
 The modelling equation gan be specified as for \code{\link[stats]{lm}}, i.e., as \code{\link[stats]{formula}} object. A typical model has the form \code{response ~ terms} where response is the (numeric) response vector and terms is a series of terms which specifies a linear predictor for \code{response}. A terms specification of the form \code{first + second} indicates all the terms in first together with all the terms in second with duplicates removed. A specification of the form \code{first:second} indicates the set of terms obtained by taking the interactions of all terms in first with all terms in second. The specification \code{first*second} indicates the cross of first and second. This is the same as \code{first + second + first:second}. However, there is no \code{offset} permitted for the \code{qml.SARspARCH}.
 

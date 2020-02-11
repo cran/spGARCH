@@ -1,8 +1,8 @@
-92a868f29c689f34825837c870018543 *DESCRIPTION
+0ffbb0d9db7e4687b54d3d312ed34314 *DESCRIPTION
 71ed8e403734c5c4fb0be357d0191e2b *NAMESPACE
-7a09932b085a58fa09c2f6a8737af92c *R/Estimation.R
+c8dcda49f42ce7cb4577575de1973507 *R/Estimation.R
 a6096f200927f5b2cb7bc86dd574b653 *R/RcppExports.R
-85242b47764f07701c442b52d57831f2 *R/Simulations.R
+2caf910ef58d3fb1d7c4cd6a24b3da61 *R/Simulations.R
 5c7f007ad399deac34013da87fb84a48 *R/zzz.R
 c2f539b843e7687e3bff3939fffa2584 *data/prostate_cancer.rda
 590230512edb3563fd87b2504262ea4d *inst/CITATION
@@ -10,9 +10,9 @@ c2f539b843e7687e3bff3939fffa2584 *data/prostate_cancer.rda
 5de1cc0aa02bba70b4046bbd00517a49 *man/fitted.spARCH.Rd
 5eb5f2631a2066db37902a41d3e97526 *man/logLik.spARCH.Rd
 5a765eca5a90abedf7d957b7156d11c6 *man/plot.spARCH.Rd
-63e8183b3194116a73bfcfeb4ff794d6 *man/prostate_cancer.Rd
-ff598c3ea140334c14a8c1a3a3cbdd65 *man/qml.SARspARCH.Rd
-1819dd53ad2c182557668526fd805282 *man/qml.spARCH.Rd
+428506f2fed816a90ef379dbc26ca264 *man/prostate_cancer.Rd
+31d7b0ad97c1a65d4fa151446815810c *man/qml.SARspARCH.Rd
+263e66e1e2063abf77e7c2531e27b262 *man/qml.spARCH.Rd
 22e00dc09c882bf0b868e0db715187a9 *man/residuals.spARCH.Rd
 b5bd3bf6afa3c2e15470096faf9d23ba *man/spARCH_class.Rd
 52815bccdd30b3f457323661431b3479 *man/spARCHsim.Rd

@@ -45,12 +45,10 @@ data(prostate_cancer)
 
 \dontrun{
 
-data <- prostate_cancer$data
-
 # Estimation (long running example)
 formula <- "log_incidence_rates ~ F_2 + F_10"
-out     <- qml.SARspARCH(formula, prostate_cancer$B = B, W = prostate_cancer$W,
-                         type = "gaussian", data = data)
+out     <- qml.SARspARCH(formula, B = prostate_cancer$B, W = prostate_cancer$W,
+                         type = "spARCH", data = prostate_cancer$data)
 
 # Summary
 summary(out)

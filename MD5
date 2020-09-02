@@ -1,6 +1,6 @@
-0ffbb0d9db7e4687b54d3d312ed34314 *DESCRIPTION
-71ed8e403734c5c4fb0be357d0191e2b *NAMESPACE
-c8dcda49f42ce7cb4577575de1973507 *R/Estimation.R
+e651b62875e224b1d8f8ac1d804f14cd *DESCRIPTION
+59342dbce38f12a46ba44e0d61f56a14 *NAMESPACE
+77a9695ae8757e4d597d5aca6bba5e89 *R/Estimation.R
 a6096f200927f5b2cb7bc86dd574b653 *R/RcppExports.R
 2caf910ef58d3fb1d7c4cd6a24b3da61 *R/Simulations.R
 5c7f007ad399deac34013da87fb84a48 *R/zzz.R
@@ -14,7 +14,7 @@ c2f539b843e7687e3bff3939fffa2584 *data/prostate_cancer.rda
 31d7b0ad97c1a65d4fa151446815810c *man/qml.SARspARCH.Rd
 263e66e1e2063abf77e7c2531e27b262 *man/qml.spARCH.Rd
 22e00dc09c882bf0b868e0db715187a9 *man/residuals.spARCH.Rd
-b5bd3bf6afa3c2e15470096faf9d23ba *man/spARCH_class.Rd
+a1342f3878e245806afbbd07a6f49ddd *man/spARCH_class.Rd
 52815bccdd30b3f457323661431b3479 *man/spARCHsim.Rd
 5094f22876dbed879540815a0e2c79b0 *man/spGARCH.Rd
 eb18a2e8e15dc03fca58e0aa379efa57 *man/spGARCHsim.Rd

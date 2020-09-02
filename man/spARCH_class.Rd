@@ -1,4 +1,5 @@
-\name{spARCH-class}
+\name{spARCH}
+\alias{spARCH}
 \alias{spARCH-class}
 \docType{class}
 \title{Output of Quasi-Maximum-Likelihood Estimation}

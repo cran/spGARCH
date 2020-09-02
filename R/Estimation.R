@@ -472,6 +472,15 @@ qml.SARspARCH <- function(formula, B, W, type = "spARCH", data = NULL, b = 2, st
 #
 ##################################################
 
+spARCH <- setClass("spARCH", slots = c(coefficients = "numeric", residuals = "numeric", fitted.values = "numeric",
+                                       terms = "formula", df.residual = "numeric",
+                                       stderr = "numeric", hessian = "matrix",
+                                       LL = "numeric",
+                                       y = "numeric", h = "numeric", type = "character", W = "dgCMatrix", B = "dgCMatrix", call = "call",
+                                       regressors = "logical", X = "matrix", AR = "logical"))
+
+
+
 
 summary.spARCH <- function(object, ...){
 

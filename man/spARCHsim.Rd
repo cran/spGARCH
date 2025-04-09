@@ -59,16 +59,16 @@ The errors follow a standard normal distribution.
 The functions returns a vector \eqn{\boldsymbol{y}}{y}.
 }
 \references{
-Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. \href{https://doi.org/10.1016/j.spasta.2018.07.005}{Spatial Statistics} 26, pp. 125-145. \emph{arXiv:1609.00711}
+Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. Spatial Statistics 26, pp. 125-145. \doi{10.1016/j.spasta.2018.07.005}, arXiv: \doi{10.48550/arXiv.1609.00711}
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \section{Control Arguments}{
 \itemize{
-  \item \code{seed} - {positive integer to initialize the random number generator (RNG), default value is a random integer in \eqn{[1, 10^6]}{[1, 10^6]}}
-  \item \code{silent} - {if \code{FALSE}, current random seed is reported}
-  \item \code{triangular} - {if \code{TRUE}, \eqn{\mathbf{W}}{W} is a triangular matrix and there are no checks to verify this assumption (default \code{FALSE})}
+  \item \code{seed} - positive integer to initialize the random number generator (RNG), default value is a random integer in \eqn{[1, 10^6]}{[1, 10^6]}
+  \item \code{silent} - if \code{FALSE}, current random seed is reported
+  \item \code{triangular} - if \code{TRUE}, \eqn{\mathbf{W}}{W} is a triangular matrix and there are no checks to verify this assumption (default \code{FALSE})
 }
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~

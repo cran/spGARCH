@@ -77,16 +77,16 @@ The errors follow a standard normal distribution.
 The functions returns a vector \eqn{\boldsymbol{y}}{y}.
 }
 \references{
-Philipp Otto, Wolfgang Schmid (2019). Spatial GARCH Models - A Unified Approach. \emph{arXiv:1908.08320}
+Philipp Otto, Wolfgang Schmid (2019). Spatial GARCH Models - A Unified Approach. arXiv: \doi{10.48550/arXiv.1908.08320}
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \section{Control Arguments}{
 \itemize{
-  \item \code{seed} - {positive integer to initialize the random number generator (RNG), default value is a random integer in \eqn{[1, 10^6]}{[1, 10^6]}}
-  \item \code{silent} - {if \code{FALSE}, current random seed is reported}
-  \item \code{triangular} - {if \code{TRUE}, \eqn{\mathbf{W}}{W} is a triangular matrix and there are no checks to verify this assumption (default \code{FALSE})}
+  \item \code{seed} - positive integer to initialize the random number generator (RNG), default value is a random integer in \eqn{[1, 10^6]}{[1, 10^6]}
+  \item \code{silent} - if \code{FALSE}, current random seed is reported
+  \item \code{triangular} - if \code{TRUE}, \eqn{\mathbf{W}}{W} is a triangular matrix and there are no checks to verify this assumption (default \code{FALSE})
 }
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~

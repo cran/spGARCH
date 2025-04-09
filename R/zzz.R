@@ -1,25 +1,31 @@
-.onAttach <- function(...) {
+.onAttach <- function(libname, pkgname) {
+  if (requireNamespace("crayon", quietly = TRUE)) {
+    blue <- crayon::blue
+    green <- crayon::green
+    bold <- crayon::bold
+  } else {
+    blue <- green <- bold <- identity
+  }
+  
   packageStartupMessage(
-"\n Generalized spatial autoregressive conditional heteroscedasticity (spGARCH) \n
- Theoretical details of spatial ARCH models can be found in Otto, Schmid, Garthoff (2018): \n
-\t Otto, P., Schmid, W. & Garthoff, R. (2018)
-\t Generalised spatial and spatiotemporal autore-
-\t gressive conditional heteroscedasticity,
-\t Spatial Statistics 26, pp. 125-145,
-\t arXiv:1609.00711 \n
-Regarding spatial GARCH models, we refer to Otto, Schmid (2019): \n
-\t Otto, P. & Schmid, W. (2019)
-\t Spatial GARCH models - A unified approach
-\t arXiv:1908.08320 \n
- Computational implementation: \n
-\t Otto, P. (2019)
-\t spGARCH: An R-package for spatial and spatiotemporal ARCH
-\t and GARCH models
-\t To appear in: The R Journal,
-\t arXiv:1812.01871v1 \n")
+    bold("\n--- spGARCH: Generalized Spatial ARCH and GARCH Models ---\n"),
+    "\n", green("Theoretical details of spatial ARCH models:"), "\n",
+    "  ", blue("Otto, P., Schmid, W., Garthoff, R. (2018)."), 
+    " Generalised spatial and spatiotemporal\n",
+    "  autoregressive conditional heteroscedasticity.\n", 
+    "  Spatial Statistics, 26, 125-145.\n",
+    "  DOI: 10.1016/j.spasta.2018.07.005 | arXiv:1609.00711\n",
+    
+    "\n", green("Review paper on spatial and spatiotemporal volatility models:"), "\n",
+    "  ", blue("Otto, P., Dogan, O., Taspinar, S., Schmid, W., Bera, A. K. (2019)."), 
+    "  Spatial and spatiotemporal volatility models: A review.\n",
+    "  Journal of Economic Surveys\n",
+    "  DOI: 10.1111/joes.12643 | arXiv:2308.13061\n",
+    
+    "\n", green("For implementation details:"), "\n",
+    "  ", blue("Otto, P. (2019)."), 
+    "  spGARCH: An R Package for Spatial and Spatiotemporal ARCH and GARCH Models.\n",
+    "  The R Journal, 11(2).\n",
+    "  URL: https://journal.r-project.org/articles/RJ-2019-053/ | arXiv:1812.01871 \n"
+  )
 }
-# To suppress this message use:
-#   suppressPackageStartupMessages(library(installr))
-
-
-

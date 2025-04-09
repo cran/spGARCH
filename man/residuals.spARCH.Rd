@@ -22,7 +22,7 @@ Other arguments.
 The function extracts the residuals of a fitted spatial ARCH model.
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \seealso{
 \code{\link[spGARCH]{residuals.spARCH}}, \code{\link[spGARCH]{fitted.spARCH}}.

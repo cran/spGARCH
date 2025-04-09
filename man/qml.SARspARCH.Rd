@@ -73,7 +73,7 @@ The modelling equation gan be specified as for \code{\link[stats]{lm}}, i.e., as
 
 For an intercept-only model, the \code{\link[stats]{formula}} can be specified as \code{response ~ 1}. In addition, it is possible to fit an intercept-free model with \code{response ~ 0} or \code{response ~ 0 + terms}.
 
-To summarize the results of the model fit, use the generic function \code{summary}. For analysis of the residuals, the generic \code{\link{plot}} function provides several descriptive plots. For numerical maximization of the log-likelihood, the function uses the algorithm of \code{\link[Rsolnp]{solnp}} from the package \code{\link[Rsolnp]{Rsolnp}}.
+To summarize the results of the model fit, use the generic function \code{summary}. For analysis of the residuals, the generic \code{\link[spGARCH]{plot.spARCH}} function provides several descriptive plots. For numerical maximization of the log-likelihood, the function uses the algorithm of \code{\link[Rsolnp]{solnp}} from the package \code{\link[Rsolnp]{Rsolnp}}.
 }
 \value{
 A \linkS4class{spARCH} object with the following elements is returned:
@@ -93,20 +93,20 @@ A \linkS4class{spARCH} object with the following elements is returned:
 \item{X}{Matrix of regressors if \code{regressor = TRUE}}
 }
 \references{
-Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. \href{https://doi.org/10.1016/j.spasta.2018.07.005}{Spatial Statistics} 26, pp. 125-145. \emph{arXiv:1609.00711}
+Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. Spatial Statistics 26, pp. 125-145. \doi{10.1016/j.spasta.2018.07.005}, arXiv: \doi{10.48550/arXiv.1609.00711}
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \section{Control Arguments}{
-see also: \code{\link{solnp}}
+see also: \code{\link[Rsolnp]{solnp}}
 \itemize{
-  \item \code{rho} - {This is used as a penalty weighting scalar for infeasibility in the augmented objective function. The higher its value the more the weighting to bring the solution into the feasible region (default 1). However, very high values might lead to numerical ill conditioning or significantly slow down convergence.}
-  \item \code{outer.iter} - {Maximum number of major (outer) iterations (default 400).}
-  \item \code{inner.iter} - {Maximum number of minor (inner) iterations (default 800).}
-  \item \code{delta} - {Relative step size in forward difference evaluation (default 1.0e-7).}
-  \item \code{tol} - {Relative tolerance on feasibility and optimality (default 1e-8).}
-  \item \code{trace} - {The value of the objective function and the parameters is printed at every major iteration (default 1).}
+  \item \code{rho} - This is used as a penalty weighting scalar for infeasibility in the augmented objective function. The higher its value the more the weighting to bring the solution into the feasible region (default 1). However, very high values might lead to numerical ill conditioning or significantly slow down convergence.
+  \item \code{outer.iter} - Maximum number of major (outer) iterations (default 400).
+  \item \code{inner.iter} - Maximum number of minor (inner) iterations (default 800).
+  \item \code{delta} - Relative step size in forward difference evaluation (default 1.0e-7).
+  \item \code{tol} - Relative tolerance on feasibility and optimality (default 1e-8).
+  \item \code{trace} - The value of the objective function and the parameters is printed at every major iteration (default 1).
 }
 }
 \seealso{

@@ -64,7 +64,7 @@ g_b(\epsilon) = (ln|h(\epsilon_1)|^b, ..., ln|h(\epsilon_n)|^b)'
 }
 and the error term is also assumed to be Gaussian.
 
-The modelling equation gan be specified as for \code{\link{lm}}, i.e., as \code{\link[stats]{formula}} object. A typical model has the form \code{response ~ terms} where response is the (numeric) response vector and terms is a series of terms which specifies a linear predictor for \code{response}. A terms specification of the form \code{first + second} indicates all the terms in first together with all the terms in second with duplicates removed. A specification of the form \code{first:second} indicates the set of terms obtained by taking the interactions of all terms in first with all terms in second. The specification \code{first*second} indicates the cross of first and second. This is the same as \code{first + second + first:second}. However, there is no \code{offset} permitted for the \code{\link{qml.spARCH}}.
+The modelling equation gan be specified as for \code{\link[stats]{lm}}, i.e., as \code{\link[stats]{formula}} object. A typical model has the form \code{response ~ terms} where response is the (numeric) response vector and terms is a series of terms which specifies a linear predictor for \code{response}. A terms specification of the form \code{first + second} indicates all the terms in first together with all the terms in second with duplicates removed. A specification of the form \code{first:second} indicates the set of terms obtained by taking the interactions of all terms in first with all terms in second. The specification \code{first*second} indicates the cross of first and second. This is the same as \code{first + second + first:second}. However, there is no \code{offset} permitted for the \code{\link[spGARCH]{qml.spARCH}}.
 
 For an intercept-only model, the \code{\link[stats]{formula}} can be specified as \code{response ~ 1}. In addition, it is possible to fit an intercept-free model with \code{response ~ 0} or \code{response ~ 0 + terms}.
 
@@ -87,24 +87,24 @@ A \linkS4class{spARCH} object with the following elements is returned:
 \item{X}{Matrix of regressors if \code{regressor = TRUE}}
 }
 \references{
-Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. \href{https://doi.org/10.1016/j.spasta.2018.07.005}{Spatial Statistics} 26, pp. 125-145. \emph{arXiv:1609.00711}
+Philipp Otto, Wolfgang Schmid, Robert Garthoff (2018). Generalised Spatial and Spatiotemporal Autoregressive Conditional Heteroscedasticity. Spatial Statistics 26, pp. 125-145. \doi{10.1016/j.spasta.2018.07.005}, arXiv: \doi{10.48550/arXiv.1609.00711}
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \section{Control Arguments}{
-see also: \code{\link{solnp}}
+see also: \code{\link[Rsolnp]{solnp}}
 \itemize{
-  \item \code{rho} - {This is used as a penalty weighting scalar for infeasibility in the augmented objective function. The higher its value the more the weighting to bring the solution into the feasible region (default 1). However, very high values might lead to numerical ill conditioning or significantly slow down convergence.}
-  \item \code{outer.iter} - {Maximum number of major (outer) iterations (default 400).}
-  \item \code{inner.iter} - {Maximum number of minor (inner) iterations (default 800).}
-  \item \code{delta} - {Relative step size in forward difference evaluation (default 1.0e-7).}
-  \item \code{tol} - {Relative tolerance on feasibility and optimality (default 1e-8).}
-  \item \code{trace} - {The value of the objective function and the parameters is printed at every major iteration (default 1).}
+  \item \code{rho} - This is used as a penalty weighting scalar for infeasibility in the augmented objective function. The higher its value the more the weighting to bring the solution into the feasible region (default 1). However, very high values might lead to numerical ill conditioning or significantly slow down convergence.
+  \item \code{outer.iter} - Maximum number of major (outer) iterations (default 400).
+  \item \code{inner.iter} - Maximum number of minor (inner) iterations (default 800).
+  \item \code{delta} - Relative step size in forward difference evaluation (default 1.0e-7).
+  \item \code{tol} - Relative tolerance on feasibility and optimality (default 1e-8).
+  \item \code{trace} - The value of the objective function and the parameters is printed at every major iteration (default 1).
 }
 }
 \seealso{
-\code{\link{solnp}} (package \code{\link[Rsolnp]{Rsolnp}})
+\code{\link[Rsolnp]{solnp}} (package \code{\link[Rsolnp]{Rsolnp}})
 }
 \examples{
 require("spdep")

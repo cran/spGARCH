@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // LL_spARCH
 double LL_spARCH(Eigen::VectorXd pars, List param);
 RcppExport SEXP _spGARCH_LL_spARCH(SEXP parsSEXP, SEXP paramSEXP) {

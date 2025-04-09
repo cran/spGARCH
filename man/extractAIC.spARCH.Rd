@@ -29,5 +29,5 @@ Other arguments.
 Numeric vector of length 2 is returned. The first element specify the \code{edf} (equivalent degree of freedom) and the Akaike information criterion is returned as second element.
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }

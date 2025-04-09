@@ -1,28 +1,37 @@
-citHeader("To cite spGARCH in publications use:")
+# CITATION file for spGARCH
 
-citEntry(entry = "Article",
-  title        = "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
-  author       = personList(as.person("Philipp Otto"),
-                   as.person("Wolfgang Schmid"),
-                   as.person("Robert Garthoff")),
-  journal      = "Spatial Statistics",
-  year         = "2018",
-  volume       = "26",
-  pages        = "125--145",
-  url          = "https://doi.org/10.1016/j.spasta.2018.07.005",
-  textVersion  =
-  paste("Otto, P., Schmid, W. & Garthoff, R. (2018).",
-        "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
-        "Spatial Statistics 26, pp. 125-145",
-        "URL: https://doi.org/10.1016/j.spasta.2018.07.005."))
+bibentry(
+    bibtype     = "Article",
+    title       = "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity",
+    author      = c(
+      as.person("Philipp Otto"),
+      as.person("Wolfgang Schmid"),
+      as.person("Robert Garthoff")
+    ),
+    journal     = "Spatial Statistics",
+    year        = "2018",
+    volume      = "26",
+    pages       = "125--145",
+    url         = "https://doi.org/10.1016/j.spasta.2018.07.005",
+    textVersion =
+      paste("Otto, P., Schmid, W. & Garthoff, R. (2018).",
+            "Generalised spatial and spatiotemporal autoregressive conditional heteroscedasticity.",
+            "Spatial Statistics, 26, 125–145.",
+            "DOI: https://doi.org/10.1016/j.spasta.2018.07.005")
+  )
+  
+bibentry(
+    bibtype     = "Article",
+    title       = "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models",
+    author      = as.person("Philipp Otto"),
+    journal     = "The R Journal 11(2)",
+    year        = "2019",
+    url         = "https://journal.r-project.org/articles/RJ-2019-053/",
+    textVersion =
+      paste("Otto, P. (2019).",
+            "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models.",
+            "The R Journal 11(2)",
+            "URL: https://journal.r-project.org/articles/RJ-2019-053/",
+            "Preprint available at https://arxiv.org/abs/1812.01871")
+  )
 
-citEntry(entry = "Article",
-  title        = "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models",
-  author       = personList(as.person("Philipp Otto")),
-  journal      = "To appear: The R Journal",
-  year         = "2019",
-  textVersion  =
-  paste("Otto, P. (2019).",
-        "spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models",
-        "To appear: The R Journal",
-        "URL: https://arxiv.org/abs/1812.01871"))

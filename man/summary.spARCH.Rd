@@ -35,7 +35,7 @@ The function returns the input \linkS4class{spARCH} object, plus
 
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \note{
 For further details about the Moran's I test see \code{\link[spdep]{moran.test}}.

@@ -31,7 +31,7 @@ A line of the normal distribution for comparison is added to the Q-Q plot, if \c
 The function \code{plot.spARCH} provides several descriptive plots to analyze the residuals of a fitted spatial ARCH model, namely (1) Moran's plot for residuals, (2) Moran's plot for squared residuals, and (3) Normal Q-Q plot for standardized residuals.
 }
 \author{
-Philipp Otto \email{potto@europa-uni.de}
+Philipp Otto \email{philipp.otto@glasgow.ac.uk}
 }
 \note{
 For details of \code{moran.plot} see: \code{help(moran.plot)}.

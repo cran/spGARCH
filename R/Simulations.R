@@ -87,7 +87,7 @@ sim.spARCH <- function(n = dim(W)[1], rho, alpha, W, b = 2, type = "spARCH", con
 }
 
 
-sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta = 0.5, theta = 0.5, type = "spGARCH", control = list()){
+sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta = 0.5, theta = 0.5, error = "normal", df=5, type = "spGARCH", control = list()){
 
   if(!exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)){
     runif(1) # initialize the RNG
@@ -106,6 +106,14 @@ sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta 
   if (length(n) > 1){
     n <- length(n)
   }
+
+  if (! error %in% c("normal","student_t"))
+    stop("error must be 'normal' or 'student_t'")
+  if (error == "student_t" && type != "log-spGARCH") {
+    warning("Student-t only for log-spGARCH; falling back to normal")
+    error <- "normal"
+  }
+
   if (!is.numeric(n)){
     stop("non-numeric argument n. \n")
   }
@@ -172,6 +180,15 @@ sim.spGARCH <- function(n = dim(W1)[1], rho, lambda, alpha, W1, W2, b = 2, zeta 
   } else {
     eps <- rnorm(n)
   }
+	
+  if (type == "log-spGARCH"){
+	if (error == "normal") {
+		eps <- rnorm(n)
+	} else {
+		eps <- rt(n, df=df)
+	}
+  }
+
 
   tau   <- tau_eps(eps, W1, W2, alpha, theta, zeta, b)
   S     <- solve(diag(n) - W2)

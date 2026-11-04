@@ -28,7 +28,7 @@ double LL_spARCH(Eigen::VectorXd pars, List param) {
 
 
   Eigen::VectorXd                         y = param[0];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[1];
   bool                                  sym = param[2];
   int                                     n = y.size();
   double                              alpha = pars[0];
@@ -72,7 +72,7 @@ double LL_EspARCH(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   VectorXd                                y = param[0];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[1];
   int                                     b = param[2];
 
   int                                     n = y.size();
@@ -126,7 +126,7 @@ double LL_spARCHX(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   Eigen::VectorXd                         y = param[0];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[1];
   Eigen::MatrixXd                         X = param[2];
   bool                                  sym = param[3];
   int                                     n = y.size();
@@ -178,7 +178,7 @@ double LL_EspARCHX(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   VectorXd                                y = param[0];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[1];
   int                                     b = param[2];
   Eigen::MatrixXd                         X = param[3];
 
@@ -256,8 +256,8 @@ double LL_SARspARCH(Eigen::VectorXd pars, List param) {
 
 
   Eigen::VectorXd                         y = param[0];
-  Eigen::MappedSparseMatrix<double> Bsparse = param[1];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[2];
+  Eigen::Map<Eigen::SparseMatrix<double>> Bsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[2];
   Eigen::VectorXd                   B_eigen = param[3];
   bool                                  sym = param[4];
   int                                     n = y.size();
@@ -305,8 +305,8 @@ double LL_SAREspARCH(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   VectorXd                                y = param[0];
-  Eigen::MappedSparseMatrix<double> Bsparse = param[1];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[2];
+  Eigen::Map<Eigen::SparseMatrix<double>> Bsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[2];
   int                                     b = param[3];
   Eigen::VectorXd                   B_eigen = param[4];
 
@@ -369,8 +369,8 @@ double LL_SARspARCHX(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   Eigen::VectorXd                         y = param[0];
-  Eigen::MappedSparseMatrix<double> Bsparse = param[1];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[2];
+  Eigen::Map<Eigen::SparseMatrix<double>> Bsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[2];
   Eigen::MatrixXd                         X = param[3];
   Eigen::VectorXd                   B_eigen = param[4];
   bool                                  sym = param[5];
@@ -429,8 +429,8 @@ double LL_SAREspARCHX(Eigen::VectorXd pars, List param) {
   // ---------------- //
 
   VectorXd                                y = param[0];
-  Eigen::MappedSparseMatrix<double> Bsparse = param[1];
-  Eigen::MappedSparseMatrix<double> Wsparse = param[2];
+  Eigen::Map<Eigen::SparseMatrix<double>> Bsparse = param[1];
+  Eigen::Map<Eigen::SparseMatrix<double>> Wsparse = param[2];
   int                                     b = param[3];
   Eigen::MatrixXd                         X = param[4];
   Eigen::VectorXd                   B_eigen = param[5];

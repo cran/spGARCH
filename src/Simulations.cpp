@@ -3,7 +3,7 @@ using namespace Rcpp;
 using namespace Eigen;
 
 // [[Rcpp::export(".Simulation_CPP")]]
-Eigen::VectorXd Simulation_CPP (Eigen::VectorXd eps, Eigen::MappedSparseMatrix<double> Wsparse, double alpha)
+Eigen::VectorXd Simulation_CPP (Eigen::VectorXd eps, Eigen::Map<Eigen::SparseMatrix<double>> Wsparse, double alpha)
 {
   // ---------------- //
   //   Declarations   //
@@ -41,7 +41,7 @@ Eigen::VectorXd Simulation_CPP (Eigen::VectorXd eps, Eigen::MappedSparseMatrix<d
 }
 
 // [[Rcpp::export(".Simulation_CPP_E")]]
-Eigen::VectorXd Simulation_CPP_E (Eigen::ArrayXd eps, Eigen::MappedSparseMatrix<double> Wsparse, double alpha, double b)
+Eigen::VectorXd Simulation_CPP_E (Eigen::ArrayXd eps, Eigen::Map<Eigen::SparseMatrix<double>> Wsparse, double alpha, double b)
 {
   // ---------------- //
   //   Declarations   //

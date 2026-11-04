@@ -1,7 +1,7 @@
 Package: spGARCH
 Type: Package
 Title: Spatial ARCH and GARCH Models (spGARCH)
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: person("Philipp", "Otto", role = c("cre", "aut"), email = "philipp.otto89@gmail.com", comment = c(ORCID = "https://orcid.org/0000-0002-9796-6682"))
 Maintainer: Philipp Otto <philipp.otto89@gmail.com>
 Contact: <philipp.otto89@gmail.com>
@@ -13,7 +13,8 @@ Imports: Rcpp (>= 0.12.4), stats, truncnorm, Rsolnp, spdep, Matrix,
         nleqslv, methods, crayon
 LinkingTo: Rcpp, RcppEigen, Matrix
 NeedsCompilation: yes
-Packaged: 2025-04-09 08:52:29 UTC; philippotto
-Author: Philipp Otto [cre, aut] (<https://orcid.org/0000-0002-9796-6682>)
+Packaged: 2026-11-04 15:10:15 UTC; philipp.otto
+Author: Philipp Otto [cre, aut] (ORCID:
+    <https://orcid.org/0000-0002-9796-6682>)
 Repository: CRAN
-Date/Publication: 2025-04-09 11:40:01 UTC
+Date/Publication: 2026-11-04 16:10:02 UTC
